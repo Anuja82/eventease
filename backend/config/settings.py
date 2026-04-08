@@ -35,10 +35,11 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 
 # ALLOWED_HOSTS = ['127.0.0.1','localhost']
 # ALLOWED_HOSTS =['*']
-ALLOWED_HOSTS = os.getenv(
-    "ALLOWED_HOSTS",
-    "127.0.0.1,localhost"
-).split(",")
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'eventease-backend-3y8m.onrender.com'
+]
 
 
 # Application definition
