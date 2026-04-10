@@ -4,6 +4,7 @@ import axios from "axios";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./FeaturedEvents.css";
+import API_BASE_URL from "../api";
 
 const FeaturedEvents = () => {
 
@@ -26,7 +27,8 @@ const FeaturedEvents = () => {
     try {
 
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/featured-events/"
+        //"http://127.0.0.1:8000/api/featured-events/"
+         `${API_BASE_URL}/api/featured-events/`
       );
 
       setEvents(res.data);
@@ -118,7 +120,8 @@ const FeaturedEvents = () => {
 
                   event.image
 
-                    ? `http://127.0.0.1:8000${event.image}`
+                   // ? `http://127.0.0.1:8000${event.image}`
+                   ? `${API_BASE_URL}${event.image}`
 
                     : "/default-event.jpg"
 

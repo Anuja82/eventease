@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ViewBookings.css";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
+
 
 function ViewBookings() {
 
@@ -16,7 +18,8 @@ function ViewBookings() {
     setLoading(true);
 
     axios
-      .get("http://127.0.0.1:8000/api/admin-bookings/")
+      //.get("http://127.0.0.1:8000/api/admin-bookings/")
+      .get(`${API_BASE_URL}/api/admin-bookings/`)
       .then((res) => setBookings(res.data))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./PaymentPage.css";
+import API_BASE_URL from "../api";
 
 const PaymentPage = () => {
 
@@ -89,12 +90,16 @@ const PaymentPage = () => {
 
       // Fake payment delay
       await new Promise(resolve => setTimeout(resolve, 2000));
+      await axios.post(
+  `${API_BASE_URL}/api/create-booking/`,
+  {
+    user_id: userId,
+    event_id: event.id,
+    tickets: tickets
+  }
+);
 
-      await axios.post("http://127.0.0.1:8000/api/create-booking/", {
-  user_id: userId,
-  event_id: event.id,
-  tickets: tickets
-});
+     
       navigate("/booking-success", {
         state: { event, tickets, total }
       });

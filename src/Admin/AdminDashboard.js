@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AdminDashboard.css";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
+
+
+
 
 import { Bar } from "react-chartjs-2";
 import {
@@ -50,8 +54,10 @@ function AdminDashboard() {
 
     // Dashboard stats
     axios
-      .get("http://127.0.0.1:8000/api/admin-dashboard/")
-      .then((res) => {
+      
+      // .get("http://127.0.0.1:8000/api/admin-dashboard/")
+      .get(`${API_BASE_URL}/api/admin-dashboard/`)
+       .then((res) => {
         setStats(res.data);
       })
       .catch((err) => {
@@ -61,7 +67,8 @@ function AdminDashboard() {
 
     // Chart data
     axios
-      .get("http://127.0.0.1:8000/api/bookings-chart/")
+      //.get("http://127.0.0.1:8000/api/bookings-chart/")
+      .get(`${API_BASE_URL}/api/bookings-chart/`)
       .then((res) => {
 
         const labels = res.data.map(item => item.month);
@@ -86,7 +93,8 @@ function AdminDashboard() {
 
     // Fetch NEW client request notifications
     axios
-      .get("http://127.0.0.1:8000/api/host-event-count/")
+     // .get("http://127.0.0.1:8000/api/host-event-count/")
+      .get(`${API_BASE_URL}/api/host-event-count/`)
       .then((res) => {
         setRequestCount(res.data.new_requests);
       })

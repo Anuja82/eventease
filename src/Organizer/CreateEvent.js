@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../PageHeader/PageHeader";
 import "./CreateEvent.css";
+import API_BASE_URL from "../api";
 
 function CreateEvent() {
   const navigate = useNavigate();
@@ -52,7 +53,8 @@ function CreateEvent() {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/create-event/",
+       // "http://127.0.0.1:8000/api/create-event/",
+       `${API_BASE_URL}/api/create-event/`,
         formDataToSend,
         {
           headers: {

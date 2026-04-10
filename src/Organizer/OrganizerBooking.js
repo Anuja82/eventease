@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./OrganizerBooking.css";
+import API_BASE_URL from "../api";
 
 function OrganizerBookings() {
 
@@ -14,7 +15,9 @@ function OrganizerBookings() {
     localStorage.getItem("email");
   useEffect(() => {
 
-    axios.get("http://127.0.0.1:8000/api/organizer-bookings/", {
+    //axios.get("http://127.0.0.1:8000/api/organizer-bookings/",
+    axios.get(`${API_BASE_URL}/api/organizer-bookings/`,
+    {
       params: { email: organizerEmail }
     })
     .then(res => {

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import PageHeader from "../PageHeader/PageHeader";
 import "./SearchPage.css";
+import API_BASE_URL from "../api";
 
 function SearchPage() {
 
@@ -17,7 +18,8 @@ function SearchPage() {
     if (!query) return;
 
     axios
-      .get("http://127.0.0.1:8000/api/search-events/", {
+      //.get("http://127.0.0.1:8000/api/search-events/", 
+      .get(`${API_BASE_URL}/api/search-events/`,{
         params: { query: query },
       })
       .then((res) => {
@@ -53,7 +55,9 @@ function SearchPage() {
                 <div className="search-image">
 
                   <img
-                     src={`http://127.0.0.1:8000${event.image}`}
+                     //src={`http://127.0.0.1:8000${event.image}`}
+                    
+                    src={`${API_BASE_URL}${event.image}`}
                       alt={event.title}
 />
 

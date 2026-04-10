@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./OrganizerProfile.css";
+import API_BASE_URL from "../api";
 
 const OrganizerProfile = () => {
 
@@ -26,7 +27,8 @@ const OrganizerProfile = () => {
   const handleUpdate = async () => {
     try {
       const res = await axios.put(
-        "http://127.0.0.1:8000/api/update-profile/",
+        //"http://127.0.0.1:8000/api/update-profile/",
+        `${API_BASE_URL}/api/update-profile/`,
         {
           email: email,
           username: formData.username,
@@ -51,7 +53,8 @@ const OrganizerProfile = () => {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/request-deletion/",
+        //"http://127.0.0.1:8000/api/request-deletion/",
+        `${API_BASE_URL}/api/request-deletion/`,
         { email: email }
       );
 

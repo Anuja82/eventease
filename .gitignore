@@ -38,5 +38,9 @@ staticfiles/
 # Environment variables
 backend/.env
 
+.env
+.env.development
+.env.deployment
+
 # OS files
 .DS_Store

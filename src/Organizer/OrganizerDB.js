@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./OrganizerDB.css";
-
+import API_BASE_URL from "../api";
 import PageHeader from "../PageHeader/PageHeader";
 
 function OrganizerDB() {
@@ -50,7 +50,8 @@ function OrganizerDB() {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/organizer-dashboard/",
+        //"http://127.0.0.1:8000/api/organizer-dashboard/",
+        `${API_BASE_URL}/api/organizer-dashboard/`,
         {
           params: { email: email }, 
         }

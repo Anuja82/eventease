@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./RevenueAnalytics.css";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
+
 
 function RevenueAnalytics() {
 
@@ -16,7 +18,8 @@ function RevenueAnalytics() {
 
   const fetchRevenue = () => {
 
-    axios.get("http://127.0.0.1:8000/api/admin-revenue/")
+    //axios.get("http://127.0.0.1:8000/api/admin-revenue/")
+    axios.get(`${API_BASE_URL}/api/admin-revenue/`)
       .then((res) => {
 
         setTotalRevenue(res.data.total_revenue);

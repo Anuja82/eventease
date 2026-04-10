@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./UpcomingEvents.css";
+import API_BASE_URL from "../api";
 
 
 const UpcomingEvents = () => {
@@ -41,7 +42,8 @@ const UpcomingEvents = () => {
     try {
 
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/upcoming-events/"
+       // "http://127.0.0.1:8000/api/upcoming-events/"
+       `${API_BASE_URL}/api/upcoming-events/`
       );
 
       setEvents(res.data);
@@ -124,7 +126,8 @@ const UpcomingEvents = () => {
 
               src={
                 event.image
-                  ? `http://127.0.0.1:8000${event.image}`
+                //  ? `http://127.0.0.1:8000${event.image}`
+                ? `${API_BASE_URL}${event.image}`
                   : "/default-event.jpg"
               }
 

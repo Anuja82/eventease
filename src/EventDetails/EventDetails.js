@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./EventDetails.css";
+import API_BASE_URL from "../api";
 
 const EventDetails = () => {
 
@@ -21,7 +22,8 @@ const EventDetails = () => {
       try {
 
         const res = await axios.get(
-          `http://127.0.0.1:8000/api/event/${id}/`
+         // `http://127.0.0.1:8000/api/event/${id}/`
+         (`${API_BASE_URL}/api/event/${id}/`)
         );
 
         setEvent(res.data);
@@ -70,7 +72,8 @@ const EventDetails = () => {
             <div className="event-image-wrapper">
 
               <img
-                src={`http://127.0.0.1:8000${event.image}`}
+                //src={`http://127.0.0.1:8000${event.image}`}
+                src={`${API_BASE_URL}${event.image}`}
                 alt={event.title}
               />
 

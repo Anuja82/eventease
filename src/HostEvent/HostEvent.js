@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./HostEvent.css";
+import API_BASE_URL from "../api";
 
 function HostEvent() {
 
@@ -41,7 +42,8 @@ function HostEvent() {
     try {
 
       await axios.post(
-        "http://127.0.0.1:8000/api/host-event/",
+        //"http://127.0.0.1:8000/api/host-event/",
+        `${API_BASE_URL}/api/host-event/`,
         formData
       );
 

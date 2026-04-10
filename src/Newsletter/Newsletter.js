@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Newsletter.css";
+import API_BASE_URL from "../api";
 import {
   FaFacebook,
   FaInstagram,
@@ -27,7 +28,8 @@ export default function Newsletter() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/api/subscribe-newsletter/",
+       // "http://127.0.0.1:8000/api/subscribe-newsletter/",
+       `${API_BASE_URL}/api/subscribe-newsletter/`,
         {
           method: "POST",
           headers: {

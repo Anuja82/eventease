@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./AdminClientRequests.css";
+import API_BASE_URL from "../api";
+
+
+
+
 
 function AdminClientRequests() {
 
@@ -18,7 +23,10 @@ function AdminClientRequests() {
   const fetchRequests = () => {
 
     axios
-      .get("http://127.0.0.1:8000/api/host-events/")
+  
+    
+      // .get("http://127.0.0.1:8000/api/host-events/")
+      .get(`${API_BASE_URL}/api/host-events/`)
       .then((res) => {
 
         setRequests(res.data);
@@ -36,7 +44,8 @@ function AdminClientRequests() {
   const approveRequest = (id) => {
 
     axios
-      .put(`http://127.0.0.1:8000/api/approve-host-event/${id}/`)
+      // .put(`http://127.0.0.1:8000/api/approve-host-event/${id}/`)
+      .put(`${API_BASE_URL}/api/approve-host-event/${id}/`)
       .then(() => {
 
         fetchRequests();
@@ -49,7 +58,9 @@ function AdminClientRequests() {
   const markContacted = (id) => {
 
     axios
-      .put(`http://127.0.0.1:8000/api/contacted-host-event/${id}/`)
+      //.put(`http://127.0.0.1:8000/api/contacted-host-event/${id}/`)
+      .put(`${API_BASE_URL}/api/contacted-host-event/${id}/`)
+      
       .then(() => {
 
         fetchRequests();

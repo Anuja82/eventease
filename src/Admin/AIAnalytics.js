@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./AIAnalytics.css";
+import API_BASE_URL from "../api";
+
 
 function AIAnalytics() {
 
@@ -19,7 +21,9 @@ function AIAnalytics() {
   useEffect(() => {
 
     axios
-      .get("http://127.0.0.1:8000/api/ai-analytics/")
+      // .get("http://127.0.0.1:8000/api/ai-analytics/")
+      .get(`${API_BASE_URL}/api/ai-analytics/`)
+      
       .then((res) => {
 
         setAnalytics(res.data);

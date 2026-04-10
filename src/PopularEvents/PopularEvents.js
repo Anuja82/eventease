@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./PopularEvents.css";
+import API_BASE_URL from "../api";
 
 const PopularEvents = () => {
 
@@ -22,7 +23,8 @@ const PopularEvents = () => {
     try {
 
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/popular_this_week/"
+        //"http://127.0.0.1:8000/api/popular_this_week/"
+        `${API_BASE_URL}/api/popular_this_week/`
       );
 
       setEvents(res.data);
@@ -59,7 +61,8 @@ const PopularEvents = () => {
               <img
                 src={
                   event.image
-                    ? `http://127.0.0.1:8000${event.image}`
+                    // ? `http://127.0.0.1:8000${event.image}`
+                    ? `${API_BASE_URL}${event.image}`
                     : "/default-event.jpg"
                 }
                 alt={event.title}

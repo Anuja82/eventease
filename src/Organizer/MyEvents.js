@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MyEvents.css";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
 
 const MyEvents = () => {
 
@@ -25,7 +26,8 @@ const MyEvents = () => {
   const fetchMyEvents = async () => {
     try {
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/organizer-events/?email=${email}`
+        //`http://127.0.0.1:8000/api/organizer-events/?email=${email}`
+        `${API_BASE_URL}/api/organizer-events/?email=${email}`
       );
       setEvents(res.data);
     } catch (error) {
@@ -38,7 +40,8 @@ const MyEvents = () => {
 
     try {
       await axios.delete(
-        `http://127.0.0.1:8000/api/delete-event/${id}/`
+        // `http://127.0.0.1:8000/api/delete-event/${id}/`
+        `${API_BASE_URL}/api/delete-event/${id}/`
       );
       fetchMyEvents();
     } catch (error) {
@@ -69,7 +72,8 @@ const MyEvents = () => {
   const handleUpdate = async (id) => {
     try {
       await axios.put(
-        `http://127.0.0.1:8000/api/update-event/${id}/`,
+        // `http://127.0.0.1:8000/api/update-event/${id}/`,
+        `${API_BASE_URL}/api/update-event/${id}/`,
         editData
       );
 
@@ -98,7 +102,8 @@ const MyEvents = () => {
                 <img
                   src={
                     event.image
-                      ? `http://127.0.0.1:8000${event.image}`
+                      //? `http://127.0.0.1:8000${event.image}`
+                      ? `${API_BASE_URL}${event.image}`
                       : "/default-event.jpg"
                   }
                   alt={event.title}

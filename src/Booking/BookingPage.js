@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./BookingPage.css";
+import API_BASE_URL from "../api";
 
 const BookingPage = () => {
   const { id } = useParams();
@@ -19,7 +20,8 @@ const BookingPage = () => {
   const fetchEvent = async () => {
     try {
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/event/${id}/`
+        //`http://127.0.0.1:8000/api/event/${id}/`
+        `${API_BASE_URL}/api/event/${id}/`
       );
       setEvent(res.data);
     } catch (error) {

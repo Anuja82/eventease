@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ManageUsers.css";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
 
 function ManageUsers() {
 
@@ -43,7 +44,9 @@ function ManageUsers() {
     }
 
     axios
-      .get(`http://127.0.0.1:8000/api/search-users/?search=${value}`)
+      // .get(`http://127.0.0.1:8000/api/search-users/?search=${value}`)
+      .get(`${API_BASE_URL}/api/search-users/?search=${value}`)
+      
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   };
@@ -52,7 +55,10 @@ function ManageUsers() {
   const toggleStatus = (id) => {
 
     axios
-      .put(`http://127.0.0.1:8000/api/toggle-user-status/${id}/`)
+      //.put(`http://127.0.0.1:8000/api/toggle-user-status/${id}/`)
+      
+     .put(`${API_BASE_URL}/api/toggle-user-status/${id}/`)
+  
       .then(() => fetchUsers())
       .catch((err) => console.log(err));
   };
@@ -62,7 +68,8 @@ function ManageUsers() {
     setSelectedUser(user);
 
     axios
-      .get(`http://127.0.0.1:8000/api/user-bookings/${user.id}/`)
+      //.get(`http://127.0.0.1:8000/api/user-bookings/${user.id}/`)
+      .get(`${API_BASE_URL}/api/user-bookings/${user.id}/`)
       .then((res) => {
         setBookings(res.data);
         setShowModal(true);
@@ -77,7 +84,8 @@ function ManageUsers() {
     if (!confirmDelete) return;
 
     axios
-      .delete(`http://127.0.0.1:8000/api/delete-user/${id}/`)
+      //.delete(`http://127.0.0.1:8000/api/delete-user/${id}/`)
+      .delete(`${API_BASE_URL}/api/delete-user/${id}/`)
       .then(() => fetchUsers())
       .catch((err) => console.log(err));
   };

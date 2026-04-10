@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ManageOrganizer.css";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
 
 function ManageOrganizers() {
 
@@ -23,7 +24,8 @@ function ManageOrganizers() {
     setLoading(true);
 
     axios
-      .get("http://127.0.0.1:8000/api/admin-organizers/")
+      //.get("http://127.0.0.1:8000/api/admin-organizers/")
+      .get(`${API_BASE_URL}/api/admin-organizers/`)
       .then((res) => {
         console.log("DATA:", res.data);
         setOrganizers(res.data);
@@ -37,7 +39,8 @@ function ManageOrganizers() {
   //  Approve Organizer
   const handleApprove = async (id) => {
     try {
-      await axios.put(`http://127.0.0.1:8000/api/approve-organizer/${id}/`);
+      //await axios.put(`http://127.0.0.1:8000/api/approve-organizer/${id}/`);
+      await axios.put(`${API_BASE_URL}/api/approve-organizer/${id}/`);
       fetchOrganizers();
     } catch (error) {
       console.log(error);
@@ -47,7 +50,8 @@ function ManageOrganizers() {
   // Block / Unblock
   const handleToggleStatus = async (id) => {
     try {
-      await axios.put(`http://127.0.0.1:8000/api/toggle-organizer/${id}/`);
+      //await axios.put(`http://127.0.0.1:8000/api/toggle-organizer/${id}/`);
+      await axios.put(`${API_BASE_URL}/api/toggle-organizer/${id}/`);
       fetchOrganizers();
     } catch (error) {
       console.log(error);
@@ -57,7 +61,8 @@ function ManageOrganizers() {
   //Delete Organizer
   const handleDelete = async (requestId) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/approve-delete/${requestId}/`);
+      //await axios.delete(`http://127.0.0.1:8000/api/approve-delete/${requestId}/`);
+      await axios.put(`http://127.0.0.1:8000/api/approve-delete/${requestId}/`);
       fetchOrganizers();
     } catch (error) {
       console.log(error);
@@ -68,7 +73,8 @@ function ManageOrganizers() {
   const handleViewEvents = async (id) => {
     try {
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/organizer-event/${id}/`
+        // `http://127.0.0.1:8000/api/organizer-event/${id}/`
+        `${API_BASE_URL}/api/organizer-event/${id}/`
       );
 
       setEvents(res.data);

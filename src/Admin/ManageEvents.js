@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ManageEvents.css";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
 
 function ManageEvents() {
 
@@ -28,7 +29,8 @@ function ManageEvents() {
     setLoading(true);
 
     axios
-      .get("http://127.0.0.1:8000/api/admin-events/")
+      // .get("http://127.0.0.1:8000/api/admin-events/")
+      .get(`${API_BASE_URL}/api/admin-events/`)
       .then((res) => setEvents(res.data))
       .catch((err) => console.log("ERROR:", err))
       .finally(() => setLoading(false));
@@ -37,7 +39,8 @@ function ManageEvents() {
   // Approve
   const handleApprove = async (id) => {
     try {
-      await axios.put(`http://127.0.0.1:8000/api/approve-event/${id}/`);
+      // await axios.put(`http://127.0.0.1:8000/api/approve-event/${id}/`);
+      await axios.put(`${API_BASE_URL}/api/approve-event/${id}/`);
       fetchEvents();
     } catch (err) {
       console.log(err);
@@ -47,7 +50,8 @@ function ManageEvents() {
   //  Reject
   const handleReject = async (id) => {
     try {
-      await axios.put(`http://127.0.0.1:8000/api/reject-event/${id}/`);
+      // await axios.put(`http://127.0.0.1:8000/api/reject-event/${id}/`);
+      await axios.put(`${API_BASE_URL}/api/reject-event/${id}/`);
       fetchEvents();
     } catch (err) {
       console.log(err);
@@ -89,7 +93,8 @@ function ManageEvents() {
     });
 
     await axios.put(
-      `http://127.0.0.1:8000/api/update-event/${selectedEvent.id}/`,
+      //`http://127.0.0.1:8000/api/update-event/${selectedEvent.id}/`,
+      `${API_BASE_URL}/api/update-event/${selectedEvent.id}/`,
       form,
       {
         headers: {
@@ -111,7 +116,9 @@ const handleDeleteEvent = async (id) => {
 
   try {
     await axios.delete(
-      `http://127.0.0.1:8000/api/delete-event/${id}/`
+      `${API_BASE_URL}/api/delete-event/${id}/`
+      // `http://127.0.0.1:8000/api/delete-event/${id}/`
+      
     );
 
     setShowModal(false);
@@ -305,7 +312,8 @@ const handleDeleteEvent = async (id) => {
         {/* IMAGE PREVIEW */}
         {selectedEvent?.image && (
           <img
-            src={`http://127.0.0.1:8000${selectedEvent.image}`}
+            //src={`http://127.0.0.1:8000${selectedEvent.image}`}
+            src={`${API_BASE_URL}${selectedEvent.image}`}
             alt="event"
             className="modal-image-preview"
           />

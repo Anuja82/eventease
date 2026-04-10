@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import PageHeader from "../PageHeader/PageHeader";
 import "./HelpAI.css";
+import API_BASE_URL from "../api";
 
 function HelpAI() {
 
@@ -37,7 +38,8 @@ function HelpAI() {
     try {
 
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/chatbot/",
+        //"http://127.0.0.1:8000/api/chatbot/",
+        `${API_BASE_URL}/api/chatbot/`,
         { message }
       );
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./User.css";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../PageHeader/PageHeader";
+import API_BASE_URL from "../api";
 
 function User() {
 
@@ -29,8 +30,11 @@ function User() {
     e.preventDefault();
 
     const url = isSignup
-      ? "http://127.0.0.1:8000/api/register/"
-      : "http://127.0.0.1:8000/api/login/";
+     // ? "http://127.0.0.1:8000/api/register/"
+     // : "http://127.0.0.1:8000/api/login/";
+
+     ? `${API_BASE_URL}/api/register/`
+     : `${API_BASE_URL}/api/login/`;
 
     const bodyData = isSignup
       ? {
@@ -129,7 +133,8 @@ function User() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/api/forgot-password/",
+        //"http://127.0.0.1:8000/api/forgot-password/",
+        `${API_BASE_URL}/api/forgot-password/`,
         {
 
           method: "POST",

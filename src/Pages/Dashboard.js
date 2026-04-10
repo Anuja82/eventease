@@ -4,6 +4,7 @@ import PageHeader from "../PageHeader/PageHeader";
 import "./Dashboard.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../api";
 
 function Dashboard() {
 
@@ -29,7 +30,7 @@ function Dashboard() {
   const [showWishlistModal, setShowWishlistModal] = useState(false);
   const [showNotificationModal, setShowNotificationModal] = useState(false);
 
-  // ✅ EDIT PROFILE STATES
+  //  EDIT PROFILE STATES
 
   const [showEdit, setShowEdit] = useState(false);
   const [editEmail, setEditEmail] = useState("");
@@ -58,7 +59,8 @@ function Dashboard() {
     }
 
     axios.get(
-      "http://127.0.0.1:8000/api/user-dashboard/",
+      //"http://127.0.0.1:8000/api/user-dashboard/",
+      `${API_BASE_URL}/api/user-dashboard/`,
       { params: { userEmail } }
     )
     .then(res => {
@@ -69,7 +71,8 @@ function Dashboard() {
     if (userId) {
 
       axios.get(
-        `http://127.0.0.1:8000/api/my-wishlist/${userId}/`
+        //`http://127.0.0.1:8000/api/my-wishlist/${userId}/`
+        `${API_BASE_URL}/api/my-wishlist/${userId}/`
       )
       .then(res => {
         setWishlistCount(res.data.length);
@@ -77,14 +80,16 @@ function Dashboard() {
       });
 
       axios.get(
-        `http://127.0.0.1:8000/api/event-reminders/${userId}/`
+        //`http://127.0.0.1:8000/api/event-reminders/${userId}/`
+        `${API_BASE_URL}/api/event-reminders/${userId}/`
       )
       .then(res =>
         setNotificationCount(res.data.length)
       );
 
       axios.get(
-        `http://127.0.0.1:8000/api/recommended-events/${userId}/`
+       // `http://127.0.0.1:8000/api/recommended-events/${userId}/`
+       `${API_BASE_URL}/api/recommended-events/${userId}/`
       )
       .then(res =>
         setRecommended(res.data)
@@ -107,7 +112,8 @@ function Dashboard() {
       if (wishlist.includes(eventId)) {
 
         await axios.delete(
-          `http://127.0.0.1:8000/api/remove-wishlist/${eventId}/${userId}/`
+         // `http://127.0.0.1:8000/api/remove-wishlist/${eventId}/${userId}/`
+         `${API_BASE_URL}/api/remove-wishlist/${eventId}/${userId}/`
         );
 
         setWishlist(
@@ -119,7 +125,8 @@ function Dashboard() {
       } else {
 
         await axios.post(
-          "http://127.0.0.1:8000/api/add-wishlist/",
+          //"http://127.0.0.1:8000/api/add-wishlist/",
+          `${API_BASE_URL}/api/add-wishlist/`,
           {
             user_id: userId,
             event_id: eventId
@@ -146,7 +153,8 @@ function Dashboard() {
   const openWishlistModal = () => {
 
     axios.get(
-      `http://127.0.0.1:8000/api/my-wishlist/${userId}/`
+     // `http://127.0.0.1:8000/api/my-wishlist/${userId}/`
+     `${API_BASE_URL}/api/my-wishlist/${userId}/`
     )
     .then(res => {
 
@@ -163,7 +171,8 @@ function Dashboard() {
   const openNotificationModal = () => {
 
     axios.get(
-      `http://127.0.0.1:8000/api/event-reminders/${userId}/`
+      //`http://127.0.0.1:8000/api/event-reminders/${userId}/`
+      `${API_BASE_URL}/api/event-reminders/${userId}/`
     )
     .then(res => {
 
@@ -175,12 +184,13 @@ function Dashboard() {
   };
 
 
-  // ✅ UPDATE PROFILE FUNCTION
+  //  UPDATE PROFILE FUNCTION
 
   const updateProfile = () => {
 
     axios.put(
-      "http://127.0.0.1:8000/api/update-profile/",
+      //"http://127.0.0.1:8000/api/update-profile/",
+      `${API_BASE_URL}/api/update-profile/`,
       {
         old_email: userEmail,
         email: editEmail,
@@ -400,7 +410,8 @@ function Dashboard() {
                       <img
                         src={
                           event.image
-                            ? `http://127.0.0.1:8000${event.image}`
+                            //? `http://127.0.0.1:8000${event.image}`
+                           ? `${API_BASE_URL}${event.image}`
                             : "/default-event.jpg"
                         }
                         alt={event.title}
@@ -453,8 +464,8 @@ function Dashboard() {
 
 
 
-      {/* MODALS REMAIN SAME BELOW — NO CHANGE */}
-       {/* ❤️ WISHLIST MODAL */}
+      
+       {/*  WISHLIST MODAL */}
 
        {showWishlistModal && (
 
@@ -518,7 +529,7 @@ function Dashboard() {
        )}
 
 
-       {/* 🔔 NOTIFICATION MODAL */}
+       {/*  NOTIFICATION MODAL */}
 
       {showNotificationModal && (
 

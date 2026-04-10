@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import PageHeader from "../PageHeader/PageHeader";
 import "./Show.css";
+import API_BASE_URL from "../api";
 
 const Show = () => {
 
@@ -26,7 +27,8 @@ const Show = () => {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/events/"
+        //"http://127.0.0.1:8000/api/events/"
+        `${API_BASE_URL}/api/events/`
       );
       setEvents(res.data);
     } catch (error) {
@@ -42,7 +44,8 @@ const Show = () => {
     try {
 
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/my-wishlist/${userId}/`
+        //`http://127.0.0.1:8000/api/my-wishlist/${userId}/`
+        `${API_BASE_URL}/api/my-wishlist/${userId}/`
       );
 
       const ids = res.data.map(item => item.event.id);
@@ -68,7 +71,8 @@ const Show = () => {
       if (wishlist.includes(eventId)) {
 
         await axios.delete(
-          `http://127.0.0.1:8000/api/remove-wishlist/${eventId}/${userId}/`
+          //`http://127.0.0.1:8000/api/remove-wishlist/${eventId}/${userId}/`
+          `${API_BASE_URL}/api/remove-wishlist/${eventId}/${userId}/`
         );
 
         setWishlist(
@@ -78,14 +82,15 @@ const Show = () => {
       }
 
       else {
-
         await axios.post(
-          "http://127.0.0.1:8000/api/add-wishlist/",
-          {
-            user_id: userId,
-            event_id: eventId
-          }
-        );
+  `${API_BASE_URL}/api/add-wishlist/`,
+  {
+    user_id: userId,
+    event_id: eventId
+  }
+);
+
+       
 
         setWishlist([...wishlist, eventId]);
 
@@ -192,7 +197,9 @@ const Show = () => {
                   <img
                     src={
                       event.image
-                        ? `http://127.0.0.1:8000${event.image}`
+                        // ? `http://127.0.0.1:8000${event.image}`
+                        
+                            ? `${API_BASE_URL}${event.image}`
                         : "/default-event.jpg"
                     }
                     alt={event.title}
