@@ -67,7 +67,7 @@
   color: #777;
 }
 
-/* ✅ Buttons ONLY inside this page */
+/*  Buttons ONLY inside this page */
 .manage-organizers button {
   border: none;
   padding: 6px 14px;
